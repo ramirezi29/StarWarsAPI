@@ -15,7 +15,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+       
+        /*IN order to test the call
+         
+         */
+        FilmController.fetchAllFilms { (films) in
+            // print(films!.count)
+            guard let films = films else {return }
+            PersonController.fetCharacters(film: films[0], completion: { (people) in
+                guard let people = people else {return}
+                var i = 0
+                for person in people {
+                    print(person.name)
+                    i += 1
+                    print(i)
+                }
+            })
+        }
+        
+        
+        
         return true
     }
 
